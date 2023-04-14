@@ -18,58 +18,61 @@ const slides = [
 ]
 
 
-    let dots = document.querySelector(".dots"); //variable dot creer//
+let arrowLeft = document.querySelector('.arrow_left'); 
+let arrowRight = document.querySelector('.arrow_right'); 
+let slider = document.querySelector("#banner");
+let nbr_img = slides.length;
+let currentSlide = 0; 
 
-    for (let i = 0; i < slides.length; i++){  //length  = longueur du tableau/: si i est inferieur a la longeur du tableau, / 
+
+let dots = document.querySelector(".dots"); //variable dot creer//
+let dot_selected = document.querySelector(".dot_selected");
+
+for (let i = 0; i < slides.length; i++){  //length  = longueur du tableau/: si i est inferieur a la longeur du tableau, / 
 	let dot = document.createElement('div'); //creation d'une div// 
 	dot.classList.add("dot"); //creation d'une class à la div//
 	dots.appendChild(dot); 
 }
 
-let arrowLeft = document.querySelector('.arrow_left'); 
-let arrowRight = document.querySelector('.arrow_right'); 
-
 arrowLeft.addEventListener('click', precedent);
 arrowRight.addEventListener('click', next);
 
+function selectDot (){
+	let dots = slider.querySelectorAll(".dot");
+	for (let i = 0; i < dots.length; i++){
+		let dot = dots[i];
+		dot.classList.remove('dot_selected');
+		if (currentSlide == i){
+			dot.classList.add('dot_selected');
+		}
+	}
+}
+
 function precedent (){ 
-    currentSlide--
-     if (currentSlide < 0) {
-     	 currentSlide = slides.length - 1; 
-     	}
-    changeSlide(slides[currentSlide].image, slides[currentSlide].tagLine);       	
+	currentSlide--;
+	if (currentSlide < 0) {
+		currentSlide = slides.length - 1; 
+	}
+	changeSlide(slides[currentSlide].image, slides[currentSlide].tagLine); 
+	selectDot();
 }
-    	
+
 function next (){
-	currentSlide++
-	 if (currentSlide > 3) {
-     	 currentSlide = slides.length - 3; 
-     	}
-    changeSlide(slides[currentSlide].image, slides[currentSlide].tagLine);
+	currentSlide++;
+	if (currentSlide > slides.length - 1) {
+		currentSlide = 0; 
+	}
+	changeSlide(slides[currentSlide].image, slides[currentSlide].tagLine);
+	selectDot();
 }
-
-
-
-
-let slider = document.querySelector("#banner");
-let nbr_img = slides.length;
-let currentSlide = 0; 
 
 function changeSlide (imgUrl, tagLine){
-   
-   let img = slider.querySelector('.banner-img');
-   let textContainer = slider.querySelector('p');
+
+	let img = slider.querySelector('.banner-img');
+	let textContainer = slider.querySelector('p');
 
 
-   img.src="./assets/images/slideshow/" + imgUrl;
-   textContainer.innerHTML= tagLine; 
-
+	img.src="./assets/images/slideshow/" + imgUrl;
+	textContainer.innerHTML= tagLine; 
+	selectDot();
 }
-
-
-
-
-
-
-
-
