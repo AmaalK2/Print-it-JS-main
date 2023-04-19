@@ -18,10 +18,10 @@ const slides = [
 ]
 
 
-let arrowLeft = document.querySelector('.arrow_left'); 
-let arrowRight = document.querySelector('.arrow_right'); 
-let slider = document.querySelector("#banner");
-let nbr_img = slides.length;
+let arrowLeft = document.querySelector('.arrow_left');   //variable creer a partir d'une classe selectionnée. ici > arrow-left//
+let arrowRight = document.querySelector('.arrow_right'); //variable creer a partir d'une classe selectionnée. ici > arrow-right//
+let slider = document.querySelector("#banner");  //variable creer a partir d'une classe selectionnée. ici > slider est le banner, la div parent//
+let nbr_img = slides.length;  //equivaut à la longueur du tableau/
 let currentSlide = 0; 
 
 
@@ -34,13 +34,13 @@ for (let i = 0; i < slides.length; i++){  //length  = longueur du tableau/: si i
 	dots.appendChild(dot); 
 }
 
-arrowLeft.addEventListener('click', precedent);
-arrowRight.addEventListener('click', next);
+arrowLeft.addEventListener('click', precedent); //permet de declencher une fonction//
+arrowRight.addEventListener('click', next); //notre variable ici au click declenchera la fonction next//
 selectDot()
 
 function selectDot (){
-	let dots = slider.querySelectorAll(".dot");
-	for (let i = 0; i < dots.length; i++){
+	let dots = slider.querySelectorAll(".dot"); //variable creer a partir d'une classe selectionnée. ici > .dot qu'on a creer precedement en java/
+	for (let i = 0; i < dots.length; i++){ 
 		let dot = dots[i];
 		dot.classList.remove('dot_selected');
 		if (currentSlide == i){
@@ -52,7 +52,7 @@ function selectDot (){
 function precedent (){ 
 	currentSlide--;
 	if (currentSlide < 0) {
-		currentSlide = slides.length - 1; 
+		currentSlide = slides.length - 1; //recuprer l'index du tableau, retourner à l'index//
 	}
 	changeSlide(slides[currentSlide].image, slides[currentSlide].tagLine); 
 	selectDot();
