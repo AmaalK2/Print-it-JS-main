@@ -36,6 +36,7 @@ for (let i = 0; i < slides.length; i++){  //length  = longueur du tableau/: si i
 
 arrowLeft.addEventListener('click', precedent);
 arrowRight.addEventListener('click', next);
+selectDot()
 
 function selectDot (){
 	let dots = slider.querySelectorAll(".dot");
@@ -74,5 +75,5 @@ function changeSlide (imgUrl, tagLine){
 
 	img.src="./assets/images/slideshow/" + imgUrl;
 	textContainer.innerHTML= tagLine; 
-	selectDot();
+
 }
